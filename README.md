@@ -4,5 +4,3 @@ Exercises based on course from Udemy -> [LINK](https://www.udemy.com/course/pyth
 ## Content
 
 ## Deployment guide
-
-
