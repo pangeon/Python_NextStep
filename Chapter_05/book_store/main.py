@@ -5,7 +5,7 @@ def welcome(version):
     print("Welcome in Book Store version:", version, "-- by Kamil Cecherz\n")
     
 if __name__ == '__main__':
-    welcome(1.1)
+    welcome(1.2)
     
     book_1 = Book(
         1,
@@ -28,7 +28,8 @@ if __name__ == '__main__':
     #? Edit The Man in the High Castle -> book_3
     book_3.add_keywords_item(["anti-utopia", "war"])
     book_3.edit_index_item(4)
-    book_3.__isBooked = True #! field is pseudo-private but I can change this field when usage -> _Book__isBooked = True  
+    book_3.__isBooked = True #! field is pseudo-private but I can change this field when usage -> _Book__isBooked = True
+    book_3.ISBN = 9781328849861
     
     books = []
     
@@ -36,7 +37,7 @@ if __name__ == '__main__':
     books.append(book_2)
     books.append(book_3)
     
-    for item in Book.AVAILABLE_BOOKS:
+    for item in Book.available_books:
         item.info_about_item()
     
     #? Info about class properties -> utils.py
