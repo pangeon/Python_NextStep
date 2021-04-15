@@ -4,7 +4,7 @@ class Book:
     
     AVAILABLE_BOOKS = []
     
-    def __init__(self, index, title, author, keywords, lang, publication_date):
+    def __init__(self, index, title, author, keywords, lang, publication_date, __isBooked):
         self.index = index
         self.title = title
         self.author = author
@@ -18,13 +18,14 @@ class Book:
             
         self.publication_date = publication_date
         self.AVAILABLE_BOOKS.append(self)
+        self.__isBooked = __isBooked
         
     
     def info_about_item(self):
         """Print about one book item in liblary"""
         
-        print("1) index: {}\n2) title: {}\n3) author: {}\n4) keywords: {}\n5) language: {}\n6) publication date: {}"
-          .format(self.index, self.title, self.author, self.keywords, self.lang, self.publication_date))
+        print("1) index: {}\n2) title: {}\n3) author: {}\n4) keywords: {}\n5) language: {}\n6) publication date: {}\n7) is booked: {}"
+          .format(self.index, self.title, self.author, self.keywords, self.lang, self.publication_date, self.__isBooked))
     
         print("-"*80)
     

@@ -1,4 +1,4 @@
-def info_about_class(object_name, class_name):
+def get_info_about_class(object_name, class_name):
     info = []
     info.append("isinstance({}, {}) {}".format(object_name, class_name, isinstance(object_name, class_name)))
     info.append("type({}) is {} {}".format(object_name, class_name, type(object_name) is class_name))
@@ -8,6 +8,11 @@ def info_about_class(object_name, class_name):
     info.append("dir {}".format(vars(class_name)))
     
     return info
+
+def print_info_about_class(object_name, class_name):
+    class_properties = get_info_about_class(object_name, class_name)
+    for i in class_properties:
+        print(i + "\n")
 
 # ! Function is not neccessary it has been replaced by a method in Book class -> info_about_item
 def print_info_about_book(book):
