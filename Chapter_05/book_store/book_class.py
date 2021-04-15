@@ -2,6 +2,8 @@ class Book:
     
     LANGUAGES = ['ENG', 'PL', 'GER', 'FRA', 'SPA', 'JPN', 'RUS', 'POR']
     
+    AVAILABLE_BOOKS = []
+    
     def __init__(self, index, title, author, keywords, lang, publication_date):
         self.index = index
         self.title = title
@@ -15,6 +17,7 @@ class Book:
             self.lang = 'OTHER'
             
         self.publication_date = publication_date
+        self.AVAILABLE_BOOKS.append(self)
         
     
     def info_about_item(self):
@@ -25,7 +28,7 @@ class Book:
     
         print("-"*80)
     
-    
+
     def edit_index_item(self, index):
         """Change book index number"""
         self.index = index

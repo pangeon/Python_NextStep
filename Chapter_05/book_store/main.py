@@ -1,12 +1,5 @@
-import Book as Library
-
-# ! Function is not neccessary it has been replaced by a method in Book class -> info_about_item
-def print_info_about_book(book):
-    
-    print("1) index: {}\n2) title: {}\n3) author: {}\n4) keywords: {}\n5) publication date: {}"
-          .format(book.index, book.title, book.author, book.keywords, book.publication_date))
-    
-    print("-"*80)
+import book_class as Library
+import utils 
     
 if __name__ == '__main__':
     
@@ -38,6 +31,10 @@ if __name__ == '__main__':
     books.append(book_2)
     books.append(book_3)
     
-    for item in books:
-        # print_info_about_book(item) <- off function 
-        Library.Book.info_about_item(item)
+    for item in Library.Book.AVAILABLE_BOOKS:
+        item.info_about_item()
+    
+    #? Info about class properties -> utils.py
+    for i in utils.info_about_class(book_1, Library.Book):
+        print(i + "\n")
+        
