@@ -5,7 +5,7 @@ def welcome(version):
     print("Welcome in Book Store version:", version, "-- by Kamil Cecherz\n")
     
 if __name__ == '__main__':
-    welcome(1.2)
+    welcome(1.3)
     
     book_1 = Book(
         1,
@@ -37,10 +37,22 @@ if __name__ == '__main__':
     books.append(book_2)
     books.append(book_3)
     
+    Book.save_to_file(book_1, 'Chapter_05/book_store/bin/file_1.book')
+    Book.save_to_file(book_2, 'Chapter_05/book_store/bin/file_2.book')
+    Book.save_to_file(book_3, 'Chapter_05/book_store/bin/file_3.book')
+    
+    obj_1 = Book.read_from_file('Chapter_05/book_store/bin/file_1.book')
+    obj_1 = Book.read_from_file('Chapter_05/book_store/bin/file_2.book')
+    obj_1 = Book.read_from_file('Chapter_05/book_store/bin/file_3.book')
+    
+    print(Book.get_book_files(r'Chapter_05/book_store/bin/'))
+    
     for item in Book.available_books:
         item.info_about_item()
     
     #? Info about class properties -> utils.py
     # utils.print_info_about_class(book_3, Book)
     
-        
+    
+    
+    

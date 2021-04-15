@@ -1,3 +1,6 @@
+import pickle
+import glob
+
 class Book:
     
     __LANGUAGES = ['ENG', 'PL', 'GER', 'FRA', 'SPA', 'JPN', 'RUS', 'POR']
@@ -82,5 +85,23 @@ class Book:
             self.__ISBN = None
         else:  
             self.__ISBN = new_ISBN
+    
+    
+    def save_to_file(self, file):
+        file = open(file, 'wb')
+        pickle.dump(self, file)     
+    
+    
+    @classmethod
+    def read_from_file(cls, file):
+        file = open(file, 'rb')
+        obj = pickle.load(file)
+        cls.available_books.append(obj)
         
+        return obj 
+     
+    @staticmethod
+    def get_book_files(catalog):     
+        return glob.glob(catalog + '/*.book')
+    
     ISBN = property(__get_ISBN, __set_ISBN, None, "Setting ISBN")
