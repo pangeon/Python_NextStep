@@ -16,10 +16,6 @@ liblary_template = """
        <th colspan=2>{}</th>
      </tr>
        <tr>
-         <td>Id</td>
-         <td>{}</td>
-       </tr>
-       <tr>
          <td>Title</td>
          <td>{}</td>
        </tr>
@@ -63,9 +59,10 @@ def export_item_to_HTML(obj, path):
             obj.keywords,
             obj.lang,
             obj.publication_date,
-            obj.is_booked,
+            obj.__is_booked,
             obj.ISBN
         )
+        print(content)
         file.write(content)
 
 def export_all_to_HTML(cls, path):   
@@ -80,7 +77,7 @@ def export_all_to_HTML(cls, path):
                 item.keywords,
                 item.lang,
                 item.publication_date,
-                item.is_booked,
+                item._Book__is_booked,
                 item.ISBN
             )
             file.write(content)
@@ -96,7 +93,7 @@ def export_this_to_HTML(self, path):
             self.keywords,
             self.lang,
             self.publication_date,
-            self.is_booked,
+            self._Book__is_booked,
             self.ISBN
         )
         file.write(content)
