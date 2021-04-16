@@ -7,15 +7,17 @@ def add_items(*items):
         
     return collection
 
-def print_collection_info(collection):
-    for item in collection: #Book.available_books:
+def print_collection_info(collection, messsage):
+    print(messsage + "\n")
+    for item in collection:
         item.info_about_item()
+        
     
 def welcome(version):
     print("Welcome in Book Store version:", version, "-- by Kamil Cecherz\n")
     
 if __name__ == '__main__':
-    welcome("1.3.1")
+    welcome("1.3.5")
     
     book_1 = Book(
         1,
@@ -40,11 +42,13 @@ if __name__ == '__main__':
     book_3.edit_index_item(4)
     book_3.__isBooked = True #! field is pseudo-private but I can change this field when usage -> _Book__isBooked = True
     book_3.ISBN = 9781328849861
+    # del book_3.ISBN #! You can delete this property from class
+    
     #* Edit The Man in the High Castle -> book_3
     
     ##*  Print collection
     books = add_items(book_1, book_2, book_3)
-    print_collection_info(Book.available_books)
+    print_collection_info(Book.available_books, "Print objects from book_class.py")
     ##*  Print collection
     
     #* Reading objects books from files -> bin
@@ -60,8 +64,8 @@ if __name__ == '__main__':
     books_objs.append(obj_1)
     books_objs.append(obj_2)
     books_objs.append(obj_3)
-    
-    print_collection_info(books_objs)    
+
+    print_collection_info(books_objs, "Reading objects books from files -> bin")    
     #* Reading objects books from files -> bin
     
     #* Info about class properties -> utils.py

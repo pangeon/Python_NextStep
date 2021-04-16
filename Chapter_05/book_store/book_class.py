@@ -70,14 +70,15 @@ class Book:
     def add_keywords_item(self, *args):
         """Add new keywords to book instance"""
         self.keywords.extend(*args) # ! "append()" create nested list into exited list, i must pass args with *
+    
         
-        
-    def __get_ISBN(self):
-        """Return property ISBN""" 
+    @property
+    def ISBN(self):
         return self.__ISBN
+
     
-    
-    def __set_ISBN(self, new_ISBN):
+    @ISBN.setter
+    def ISBN(self, new_ISBN):
         """Check type and set property ISBN"""   
         if(str(type(new_ISBN)) or float(type(new_ISBN))):    
             self.__ISBN = int(new_ISBN)
@@ -86,6 +87,9 @@ class Book:
         else:  
             self.__ISBN = new_ISBN
     
+    @ISBN.deleter
+    def ISBN(self):   
+        self.__ISBN = None
     
     def save_to_file(self, file):
         file = open(file, 'wb')
@@ -99,9 +103,8 @@ class Book:
         cls.available_books.append(obj)
         
         return obj 
+    
      
     @staticmethod
     def get_book_files(catalog):     
         return glob.glob(catalog + '/*.book')
-    
-    ISBN = property(__get_ISBN, __set_ISBN, None, "Setting ISBN")
