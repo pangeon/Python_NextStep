@@ -2,9 +2,6 @@ from book_class import Book #? book has only one class
 import types
 import utils
 
-#web_path = 'C:/Users/user/Documents/Python Projects/Udemy/Chapter_05/book_store/web' #utils.get_file_from_relative_location(r'\Chapter_05\book_store\web')
-web_path_files = 'C:/Users/user/Documents/Python Projects/Udemy/Chapter_05/book_store/web/{}.html' # utils.get_file_from_relative_location(r'\Chapter_05\book_store\web\{}.html')
-web_path_collection_file = 'C:/Users/user/Documents/Python Projects/Udemy/Chapter_05/book_store/web/books.html' # utils.get_file_from_relative_location(r'\Chapter_05\book_store\web\{}.html')
 
 liblary_template_header = """
 <table border=1>
@@ -50,6 +47,7 @@ liblary_template_footer ="""
 </indent></table>
 """
 
+
 def export_item_to_HTML(obj, path):
     with open(path, "w") as file:    
         content = liblary_template.format(
@@ -59,11 +57,12 @@ def export_item_to_HTML(obj, path):
             obj.keywords,
             obj.lang,
             obj.publication_date,
-            obj.__is_booked,
+            obj._Book__is_booked,
             obj.ISBN
         )
         print(content)
         file.write(content)
+
 
 def export_all_to_HTML(cls, path):   
     with open(path, "w") as file:    
@@ -84,6 +83,7 @@ def export_all_to_HTML(cls, path):
             
         file.write(liblary_template_footer)
 
+
 def export_this_to_HTML(self, path):   
     with open(path, "w") as file:      
         content = liblary_template.format(
@@ -99,19 +99,18 @@ def export_this_to_HTML(self, path):
         file.write(content)
 
 
-# TODO: Something is wrong, I can't fix it !
-def add_static_method(obj):
+def add_static_method(obj, path):
     Book.export_item_to_HTML = export_item_to_HTML
-    Book.export_item_to_HTML(obj, web_path_files)
+    Book.export_item_to_HTML(obj, path)
 
-def add_class_method():   
+def add_class_method(path):   
     Book.export_all_to_HTML = types.MethodType(export_all_to_HTML, Book)
-    # Book.export_all_to_HTML('c:/temp/all_cakes.html')
+    Book.export_all_to_HTML(path)
     
-def add_intance_method():
+def add_intance_method(path):
     for item in Book.available_books:  
         item.export_this_to_HTML = types.MethodType(export_this_to_HTML, item)
         
     for item in Book.available_books:  
-        item.export_this_to_HTML(web_path_files.format(item.title.replace(' ','_')))   
-# TODO: Something is wrong, I can't fix it !      
+        item.export_this_to_HTML(path.format(item.title.replace(' ','_')))   
+    

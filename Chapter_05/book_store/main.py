@@ -1,6 +1,5 @@
 from book_class import Book #? book has only one class
-#from extend_book_class import add_class_method, add_static_method, add_intance_method
-import extend_book_class as book_utils
+from extend_book_class import add_class_method, add_static_method, add_intance_method
 import utils
 import types 
 
@@ -10,6 +9,7 @@ def add_items(*items):
         
     return collection
 
+
 def print_collection_info(collection, messsage):
     print(messsage + "\n")
     for item in collection:
@@ -18,9 +18,10 @@ def print_collection_info(collection, messsage):
     
 def welcome(version):
     print("Welcome in Book Store version:", version, "-- by Kamil Cecherz\n")
+
     
 if __name__ == '__main__':
-    welcome("1.4")
+    welcome("1.4.2")
     
     book_1 = Book(
         1,
@@ -72,32 +73,19 @@ if __name__ == '__main__':
     #* Reading objects books from files -> bin
     
     #* extend Book class -> no inheritance -> add method outside the class -> file extend_book_class
-    
     # static method:
-    path_book_1 = 'C:/Users/user/Documents/Python Projects/Udemy/Chapter_05/book_store/web/book_1.html'
-    Book.export_item_to_HTML = book_utils.export_item_to_HTML
-    Book.export_item_to_HTML(book_3, path_book_1)
+    path_book_1 = utils.get_file_from_relative_location(r'\Chapter_05\book_store\web') + r'\book_1.html'
+    add_static_method(book_1, path_book_1)
     
     # class method:
-    path_all_books = 'C:/Users/user/Documents/Python Projects/Udemy/Chapter_05/book_store/web/all_books.html'
-    Book.export_all_to_HTML = types.MethodType(book_utils.export_all_to_HTML, Book) 
-    Book.export_all_to_HTML(path_all_books)
+    path_all_books = utils.get_file_from_relative_location(r'\Chapter_05\book_store\web') + r'\all_books.html'
+    add_class_method(path_all_books)
     
-    #instance method:
-    path_html = 'C:/Users/user/Documents/Python Projects/Udemy/Chapter_05/book_store/web/{}.html' 
-    for item in Book.available_books:   
-        item.export_this_to_HTML = types.MethodType(book_utils.export_this_to_HTML, item)
-    for item in Book.available_books:   
-        item.export_this_to_HTML(path_html.format(item.title.replace(' ','_')))
-    
-    # TODO: Something is wrong, I can't fix it !
-    # add_class_method()
-    # add_static_method(book_1)
-    # add_intance_method()
-    # print(dir(Book))
-    # TODO: Something is wrong, I can't fix it !
+    # instance method:
+    path_html = utils.get_file_from_relative_location(r'\Chapter_05\book_store\web') + r'\{}.html' 
+    add_intance_method(path_html)
     #* extend Book class -> no inheritance -> add method outside the class -> file extend_book_class
     
     #* Info about class properties -> utils.py
     utils.print_info_about_class(book_3, Book)
-    #* Info about class properties -> utils.py  
+    #* Info about class properties -> utils.py
