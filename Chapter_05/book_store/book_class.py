@@ -15,7 +15,7 @@ class Book:
         keywords, 
         lang, 
         publication_date, 
-        isBooked = None, 
+        is_booked = None, 
         ISBN = None):
         
         self.index = len(self.available_books) + 1
@@ -31,7 +31,7 @@ class Book:
             
         self.publication_date = publication_date
         self.available_books.append(self)
-        self.__isBooked = isBooked
+        self.__is_booked = is_booked
         self.__ISBN = ISBN
         
     
@@ -55,7 +55,7 @@ class Book:
               self.keywords, 
               self.lang, 
               self.publication_date, 
-              self.__isBooked,
+              self.__is_booked,
               self.__ISBN
         ))
     

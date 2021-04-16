@@ -1,3 +1,12 @@
+import os
+
+# example: r'\Chapter_04\lab_25\web'
+def get_file_from_relative_location(location):
+    path_to_file = os.getcwd()
+    raw_path = path_to_file + location
+
+    return raw_path
+
 def get_info_about_class(object_name, class_name):
     info = []
     info.append("isinstance({}, {}) {}".format(object_name, class_name, isinstance(object_name, class_name)))

@@ -1,4 +1,5 @@
 from book_class import Book #? book has only one class
+from extend_book_class import add_class_method, add_static_method, add_intance_method
 import utils 
 
 def add_items(*items):
@@ -17,7 +18,7 @@ def welcome(version):
     print("Welcome in Book Store version:", version, "-- by Kamil Cecherz\n")
     
 if __name__ == '__main__':
-    welcome("1.3.5")
+    welcome("1.4 with bugs")
     
     book_1 = Book(
         1,
@@ -40,7 +41,7 @@ if __name__ == '__main__':
     #* Edit The Man in the High Castle -> book_3
     book_3.add_keywords_item(["anti-utopia", "war"])
     book_3.edit_index_item(4)
-    book_3.__isBooked = True #! field is pseudo-private but I can change this field when usage -> _Book__isBooked = True
+    book_3.__is_booked = True #! field is pseudo-private but I can change this field when usage -> _Book__is_booked = True
     book_3.ISBN = 9781328849861
     # del book_3.ISBN #! You can delete this property from class
     
@@ -68,9 +69,20 @@ if __name__ == '__main__':
     print_collection_info(books_objs, "Reading objects books from files -> bin")    
     #* Reading objects books from files -> bin
     
+    #* extend Book class -> no inheritance -> add method outside the class -> file extend_book_class
+    
+    
+    # TODO: Something is wrong, I can't fix it !
+    # add_class_method()
+    # add_static_method(book_1)
+    # add_intance_method()
+    # print(dir(Book))
+    # TODO: Something is wrong, I can't fix it !
+    
+    
+    
+    #* extend Book class -> no inheritance -> add method outside the class -> file extend_book_class
+    
     #* Info about class properties -> utils.py
     # utils.print_info_about_class(book_3, Book)
-    #* Info about class properties -> utils.py
-    
-    
-    
+    #* Info about class properties -> utils.py  
