@@ -7,3 +7,5 @@ Chapter_04/lab_25/web/*
 Chapter_05/book_store/__pycache__/*
 Chapter_05/book_store/bin/*
 Chapter_05/book_store/web/*
+launch.json
+settings.json
