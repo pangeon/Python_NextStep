@@ -7,10 +7,8 @@ class Trip:
         self.end = end
     
     def check_data(self):
-        if len(self.title) == 0:
-            raise Exception("Title is empty")
-        if self.start > self.end:
-            raise ValueError("Start date is later than end date!")
+        assert len(self.title) > 0
+        assert self.start <= self.end
     
     @classmethod
     def publish_offer(cls, trips):
