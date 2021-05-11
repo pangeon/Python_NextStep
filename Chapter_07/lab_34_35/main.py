@@ -1,5 +1,7 @@
 import os
 from shutil import copyfile
+import urllib3.exceptions
+import requests
 
 import os_utils as os_utils
 from os_utils import OsUtils
@@ -19,11 +21,22 @@ if __name__ == "__main__":
         
         url_utils.save_url_to_file(url, dir_tmp)
         copyfile(dir_tmp, dir_html)
-    except Exception as e:
-        print('Error downloading the URL {}'.format(url))
+
+    except requests.exceptions.ConnectionError as e:
+        print('Page from URL doesn\'t exist ! {}'.format(url))
         print('Error details: {}'.format(e))
+    
+    except (PermissionError, FileNotFoundError) as e:
+        print('File access permission problem with:\n{}\n{}'.format(dir_html, dir_tmp))
+        print('Error details: {}'.format(e))
+    
+    except Exception as e:
+        print('Somethings is wrong !')
+        print('Error details: {}'.format(e))
+
     else:
         print('URL downloaded successfully {}'.format("file.html"))
+
     finally:
         if os.path.exists(dir_tmp):
             print("Remove temporary file {}".format(dir_tmp))
