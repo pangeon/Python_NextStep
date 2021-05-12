@@ -5,18 +5,16 @@ class Combinations:
         self.promototions = promototions
         self.customers = customers
     
-    def __iter__(self):
-        return self
-    
+
     def __getitem__(self, item):
         all_combinations = len(self.products) * len(self.promototions) * len(self.customers)
         if  all_combinations < item:
             raise StopIteration("Iteration had stopped...")
         else:
-            position_products = item // (len(self.promototions) * len(self.customers))
+            position_products = item 
             item = item % (len(self.promototions) * len(self.customers))
             
-            position_promotions = item // len(self.customers)
+            position_promotions = item 
             item = item % len(self.customers)
 
             position_cutomers = item

@@ -44,9 +44,11 @@ def item_example():
     
     combinations = Combinations(products, promototions, customers)
 
-    for i in range(1, 30):
-        print(i, combinations[i])
+    combinations_iterator = iter(combinations)
+    print(next(combinations_iterator))
 
+    for combination in combinations_iterator:
+        print(combination)
 
 if __name__ == "__main__":
     # test_1()
