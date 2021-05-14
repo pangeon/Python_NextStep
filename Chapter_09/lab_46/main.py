@@ -3,40 +3,45 @@ import itertools as tools
 def split(str_sequence):
     return [char for char in str_sequence]
 
-def check_sequence_type(str_sequence):
-    strong_mult = 0
+def check_sequence_type(symbol):
+    strong_mult = ""
+    split_symbol = split(symbol)
 
     str_sign_sequence = "!@#$%^&*()-=[]\;',./`"
     str_num_sequence = "1234567890"
     str_lower_sequence = "abcdefghjklmnoprstuwyz"
     str_upper_sequence = "ABCDEFGHIJKLMNOPRSTUWYZ"
 
-    for letter in split(str_sequence):
-        if str_sign_sequence.find(letter) != -1:
-            strong_mult += len(str_sign_sequence)
-        if str_num_sequence.find(letter) != -1:
-            strong_mult += len(str_num_sequence)
-        if str_lower_sequence.find(letter) != -1:
-            strong_mult += len(str_lower_sequence)
-        if str_upper_sequence.find(letter) != -1:
-            strong_mult += len(str_upper_sequence)
+    for s in split_symbol:
+        if s.find("S") == 0:
+            strong_mult += str_sign_sequence
+        if s.find("N") == 0:
+            strong_mult += str_num_sequence
+        if s.find("L") == 0:
+            strong_mult += str_lower_sequence
+        if s.find("U") == 0:
+            strong_mult += str_upper_sequence
     
     return strong_mult
 
-
-
 if __name__ == "__main__":
+    symbol = input("Enter sequence type symbol: \nS - signs\nN - numbers\nU - uppercase letter\nL - lowercase letter\n")
     password = input("Enter password to check for computer: ")
     
-    #str_full_sequence = "ABCDEFGHIJKLMNOPRSTUWYZabcdefghjklmnoprstuwyz1234567890!@#$%^&*()-=[]\;',./`"
-    strong_mult = check_sequence_type(password)
-
-    combinations = tools.combinations_with_replacement(password, len(password))
+    password_combinations = tools.combinations_with_replacement(password, len(password))
+    all_combinations = tools.combinations_with_replacement(check_sequence_type(symbol), len(password))
     
-    strong = 0
+    password_combinations_counter = 0
+    all_combinations_counter = 0
 
-    for combination in combinations:
-        print(combination)
-        strong += 1
+    for pass_combination in password_combinations:
+        password_combinations_counter += 1
 
-    print("Your password strong:", strong * strong_mult)
+    for one_in_all_combination in all_combinations:
+        all_combinations_counter += 1
+
+    print("password combinations:", password_combinations_counter)
+    print("all combinations from", check_sequence_type(symbol) , all_combinations_counter)
+    password_strong = all_combinations_counter / password_combinations_counter 
+    print("Your password strong:", password_strong)
+
