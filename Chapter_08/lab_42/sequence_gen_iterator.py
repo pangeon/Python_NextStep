@@ -9,9 +9,6 @@ class SequenceGenIterator:
         self.next_step = 0
 
     def __next__(self):
-        if self.min_value > self.max_value or self.step > self.max_value:
-            raise Exception('Invalid argument values')
-        else:
             self.next_step = self.min_value + self.step
             self.next_value += self.next_step
             
