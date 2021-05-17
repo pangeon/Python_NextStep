@@ -9,13 +9,14 @@ class FileFromWeb:
         self.url = url
         self.temp_file = temp_file
 
-
-    def __enter__(self):
+ 
+    def download_file(self):
         response = requests.get(self.url)
-        with open(self.temp_file, "wb") as reading_file:
-            reading_file.writelines(response.content)
+        with open(self.temp_file, 'wb') as f:
+            f.write(response.content)
         return self
-    
+ 
 
-    def __exit__(self):
-        pass
+    def close(self):
+        # if os.path.isfile(self.temp_file):
+            os.remove(self.temp_file)
